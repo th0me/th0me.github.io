@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#B9897F"><meta name="author" content="th0me"><meta name="copyright" content="th0me"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>DC-1靶机通关手册 | th0me的博客</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#B9897F"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"example.com","root":"/","title":"th0me","version":"1.7.0","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-1LL0D86CY9"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1LL0D86CY9');
+}</script><script data-ad-client="ca-pub-2245427233262012" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M9KWR9L');</script><!-- End Google Tag Manager --><meta name="description" content="前置工具及安装VmwareWorkstation 推荐16pro版 1https:&#x2F;&#x2F;www.vmware.com&#x2F;cn&#x2F;products&#x2F;workstation-pro&#x2F;workstation-pro-evaluation.html  虚拟机 Centos7 镜像下载地址： http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7&#x2F;isos&#x2F;x86_64&#x2F;  推荐下载Contos7的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DC-1靶机通关手册">
+<meta property="og:url" content="http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="th0me的博客">
+<meta property="og:description" content="前置工具及安装VmwareWorkstation 推荐16pro版 1https:&#x2F;&#x2F;www.vmware.com&#x2F;cn&#x2F;products&#x2F;workstation-pro&#x2F;workstation-pro-evaluation.html  虚拟机 Centos7 镜像下载地址： http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7&#x2F;isos&#x2F;x86_64&#x2F;  推荐下载Contos7的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/wps1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134019070.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134059049.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134115299.png">
+<meta property="og:image" content="c:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031134253670.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134351589.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134427325.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134517563.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134812688.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135036491.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135133970.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135406057.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140426945.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140719343.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140743602.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141129273.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141529735.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141542751.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141749573.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031142037618.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031142759755.png">
+<meta property="og:image" content="http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031143316570.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031143329551.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031143501598.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144009034.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144512068.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144904175.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031145515760.png">
+<meta property="og:image" content="c:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031145633167.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031145757831.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150311736.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150356548.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150451186.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150632304.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150718312.png">
+<meta property="og:image" content="c:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031150821180.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031151015433.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031151359642.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153331795.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153742026.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153846492.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031154036356.png">
+<meta property="og:image" content="http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031154146140.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031154941141.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031155441201.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031155805283.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160552116.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160625737.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160807052.png">
+<meta property="article:published_time" content="2021-11-14T08:53:30.752Z">
+<meta property="article:modified_time" content="2021-11-14T08:55:16.468Z">
+<meta property="article:author" content="th0me">
+<meta property="article:tag" content="靶机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/th0me/images/main/blog/wps1.jpg"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="th0me"><img width="96" loading="lazy" src="/images/1.jpg" alt="th0me"><span class="site-author-status" title="瞎子摸象">😭</span></a><div class="site-author-name"><a href="/about/">th0me</a></div><span class="site-name">th0me的博客</span><sub class="site-subtitle"></sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">1</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">0</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">1</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=kZJzggTTCf4SpvEQ8lXWoi5ZjhAx0ILZ&amp;jump_from=webapi" title="QQ 群 1050458482" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">前置工具及安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DC-1%E9%9D%B6%E6%9C%BA%E5%AE%89%E8%A3%85%E5%92%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">DC-1靶机安装和设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DC-1%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">DC-1渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">3.1.</span> <span class="toc-text">信息收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">漏洞探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96webshell-shell"><span class="toc-number">5.</span> <span class="toc-text">获取webshell(shell)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">5.1.</span> <span class="toc-text">提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#end"><span class="toc-number"></span> <span class="toc-text">end</span></a></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="th0me"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="th0me的博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">DC-1靶机通关手册<a class="post-edit-link" href="https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/_posts/DC-1靶机通关手册.md" target="_blank" title="Edit this post" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2021-11-14 16:53:30" itemprop="dateCreated datePublished" datetime="2021-11-14T16:53:30+08:00">2021-11-14</time></div><span class="leancloud_visitors" id="/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/" data-flag-title="DC-1靶机通关手册"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Views"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="Comments"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/"></span></span></a><div class="post-classify"><span class="post-tag"><a class="tag-item" href="/tags/%E9%9D%B6%E6%9C%BA/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">靶机</span></a></span></div><div class="post-author"><span class="author-name">云游君</span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#B9897F;"><h2 id="前置工具及安装"><a href="#前置工具及安装" class="headerlink" title="前置工具及安装"></a>前置工具及安装</h2><p><strong>VmwareWorkstation</strong> 推荐16pro版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html</span><br></pre></td></tr></table></figure>
+
+<p><strong>虚拟机</strong></p>
+<p>Centos7 镜像下载地址：</p>
+<p><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">http://mirrors.aliyun.com/centos/7/isos/x86_64/</a> </p>
+<p>推荐下载Contos7的标准安装版：CentOS-7-x86_64-DVD-2003.iso</p>
+<p>Kali虚拟机下载地址：</p>
+<p><a target="_blank" rel="noopener" href="https://www.kali.org/downloads/">https://www.kali.org/downloads/</a></p>
+<p>下个64位的installer版吧。</p>
+<p>——最好至少留有60G空间给Kali，这东西越用越瘾的0.0</p>
+<p>这是VMware 14 的Centos7的安装参考：</p>
+<p>​    <a target="_blank" rel="noopener" href="https://blog.csdn.net/Rao_Limon/article/details/83311095">https://blog.csdn.net/Rao_Limon/article/details/83311095</a></p>
+<p>这是VMware 14 的Kali的安装参考：</p>
+<p>​    <a target="_blank" rel="noopener" href="https://www.geek-share.com/detail/2789583020.html">https://www.geek-share.com/detail/2789583020.html</a>  </p>
+<p>Kali的处理器数最好留多一些，因个人情况而定吧。</p>
+<p>*<strong>*<em>在成功进入桌面后，记得把快照拍了：*</em></strong></p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/wps1.jpg" alt="img" loading="lazy"> </p>
+<p><strong>配置虚拟机网络：</strong></p>
+<p>虚拟机网络有三种方式，分别是NAT模式、桥接模式以及仅主机模式，各个模式的特点简单来说如下：</p>
+<p>NAT模式以主机作为虚拟机的网关，虚拟机依靠主机可以访问外网，但无法与和主机处于同一网段的其他真实机子通讯，主机可以与虚拟机通讯。</p>
+<p>桥接模式则是虚拟机和主机同属一个网段上，也就类似于虚拟机相当于主机同一网段上的独立主机了，虚拟机的IP是真实的主机所在的网段上的IP，因此可以和其他机子包括主机通讯，意味着是通过和主机所使用的相同的路由器访问外网。</p>
+<p>主机模式则与上边两种模式截然不同，主机模式仅虚拟机之间、虚拟机和主机可以相互通讯，和外网完全是隔离的状态，也就是说虚拟机无法访问外网，也无法与处于和主机同一网段上的其他真实主机通讯，通讯仅限于主机范围内。</p>
+<p>一般来说VMware在装虚拟机时都会自动帮配好网络，只需要选择NAT或者桥接模式，虚拟机就可以访问外网了，这里是学习如何更自由的配置虚拟机网络。</p>
+<p>Centos7网络配置参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32352777/article/details/86561289">https://blog.csdn.net/qq_32352777/article/details/86561289</a></p>
+<p>Kali网络配置参考：</p>
+<p>​    <a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardlearn_bobo/article/details/78851833">https://blog.csdn.net/Hardlearn_bobo/article/details/78851833</a></p>
+<p>——最好将两台虚拟机网络设置在同一网段。</p>
+<p>对于渗透测试，此处推荐使用Kali虚拟机</p>
+<p><strong>Kali安装VMwaretools的简单步骤</strong></p>
+<ol>
+<li><p>   虚拟机选项卡 → 安装VMware Tools</p>
+</li>
+<li><p>   打开在Kali中新出现光驱，把tar.gz后缀的压缩包复制到自己的用户主目录</p>
+</li>
+<li><p>   进入主目录，右键点击压缩包，选择提取到此处</p>
+</li>
+<li><p>   打开解压好的目录，在文件管理器空白处，点击右键，选择在终端打开</p>
+</li>
+<li><p>   输入 “./vm” ，然后按下tab键，待自动补全后按回车就行了</p>
+</li>
+</ol>
+<p><strong>安装VMwaretools目前阶段只适用于方便地直接将本机文件拖入虚拟机中。看自己需求选择安装</strong></p>
+<p><strong>配置SSH连接虚拟机</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kali:https://www.cnblogs.com/061713xlhj/p/10726799.html</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centos:https://blog.csdn.net/trackle400/article/details/52755571</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="DC-1靶机安装和设置"><a href="#DC-1靶机安装和设置" class="headerlink" title="DC-1靶机安装和设置"></a>DC-1靶机安装和设置</h2><p>DC-1靶机相当于一个主机，内置有5个flag作为提示和渗透成功的证明。</p>
+<p>安装好Vmwareworkstation并且激活之后，下载DC-1压缩包并解压。</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134019070.png" alt="image-20211031134019070" loading="lazy"></p>
+<p>直接用Vmwareworkstation打开</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134059049.png" alt="image-20211031134059049" loading="lazy"></p>
+<p>选择储存路径并导入</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134115299.png" alt="image-20211031134115299" loading="lazy"></p>
+<p>一般此处会提示导入失败，重试即可</p>
+<p><img src="C:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031134253670.png" alt="image-20211031134253670" loading="lazy"></p>
+<p>配置靶机网络，为保证对靶机的渗透测试可以正常顺利进行，要将靶机放于同一个局域网下，所以要设置NAT模式</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134351589.png" alt="image-20211031134351589" loading="lazy"></p>
+<p>选择这个，之后点击确定，并开启此虚拟机</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134427325.png" alt="image-20211031134427325" loading="lazy"></p>
+<p>选择 是 即可</p>
+<p>等待启动</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134517563.png" alt="image-20211031134517563" loading="lazy"></p>
+<p>如图所示，即靶机启动成功，则可使用虚拟机作为攻击机，对目标靶机进行渗透测试</p>
+<h2 id="DC-1渗透测试"><a href="#DC-1渗透测试" class="headerlink" title="DC-1渗透测试"></a>DC-1渗透测试</h2><h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>打开Kali虚拟机(root权限)</p>
+<p>这里演示时使用的工具是Xshell，如果没有配置SSH，在Kali中使用终端操作是一样的。</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031134812688.png" alt="image-20211031134812688" loading="lazy"></p>
+<p>首先进行主机发现，由于靶机与虚拟机属于同一C段下，所以考虑使用nmap拿到靶机的ip地址。</p>
+<p>使用ifconfig命令，拿到这台虚拟机的内网ip，通常是eth0对应的inet地址</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135036491.png" alt="image-20211031135036491" loading="lazy"></p>
+<p>由于靶机与虚拟机处于同一c段，所以只需要扫描位于同一c段的主机，就可以进行主机发现。</p>
+<p>可以简单理解为，虚拟机ip为192.168.10.131，而靶机ip为192.168.10.XXX，现在需要找到靶机的ip地址</p>
+<p>使用命令 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP ip/24 -oN nmap.sP</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135133970.png" alt="image-20211031135133970" loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031135406057.png" alt="image-20211031135406057" loading="lazy"></p>
+<p>其中 -sP参数表示使用ping扫描, -oN是写入到其后的文件，在此条命令中表示将结果写入nmap.sP中，ip/24表示该ip下的所有c段</p>
+<p>从扫描结果得知，该靶机的ip地址为192.168.10.142 (不同环境对应的ip不同，只是我的主机对应着192.168.10.142，所以本文中所有写着192.168.10.142的地方，要根据自己本机电脑情况选择ip替换)</p>
+<p>进行下一步的信息收集，要查看靶机开放了什么端口，端口上运行了什么服务，以便后续有针对性的进行渗透计划。</p>
+<p>此处同样使用nmap工具，命令为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A 靶机ip -oN nmap.A</span><br></pre></td></tr></table></figure>
+
+<p>-A参数表示全面扫描，通常对单个ip地址使用，同时-oN将结果写入nmap.A中</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140426945.png" alt="image-20211031140426945" loading="lazy"></p>
+<p>此处表示靶机开放了22端口，上面运行着ssh服务</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140719343.png" alt="image-20211031140719343" loading="lazy"></p>
+<p>此处表示靶机开放了80端口，上面运行着http服务，同时80端口一般对应着web页面，一般来说，如果没有经过特别配置，直接使用访问ip地址即可访问到该主机对应的http服务。简单来说，就是靶机开放了一个web页面，在浏览器直接输入该ip即可访问。nmap还扫出来一些信息，比如该网站使用了Drupal 7框架，存在robots.txt文件，使用了Apache/2.2.22等信息</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031140743602.png" alt="image-20211031140743602" loading="lazy">    </p>
+<p>此处表示开放111端口，该端口存在漏洞但并未验证，也并非本次渗透测试的攻击方向，想了解相关服务内容和漏洞验证及漏洞利用方法的，可以自己去查一下（我也不会）</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141129273.png" alt="image-20211031141129273" loading="lazy"></p>
+<h2 id="漏洞探测"><a href="#漏洞探测" class="headerlink" title="漏洞探测"></a>漏洞探测</h2><p>由于靶机开放了22端口和80端口，对于22端口上的ssh服务，如果不知道用户名和密码，尝试爆破是一件很繁琐且效率很低的方法，所以考虑从网页入手。</p>
+<p>使用浏览器访问该ip对应的web页面</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141529735.png" alt="image-20211031141529735" loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141542751.png" alt="image-20211031141542751" loading="lazy"></p>
+<p>使用Wappalyzer插件发现，以及刚刚nmap中扫出来的信息提示，该网站的建站系统为Drupal 7。第一思路为去网上找有没有drupal 7的漏洞利用方式。</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031141749573.png" alt="image-20211031141749573" loading="lazy"></p>
+<p>可以看到有很多关于drupal 7的漏洞，推荐有兴趣的同学可以根据上面的教程手工利用，合理使用搜索引擎复现利用nday漏洞也是一项很重要的技能，并且由于drupal的最新版本应该为11左右，所以对于drupal 7 肯定会有多个可以利用的漏洞。</p>
+<p>这里更多出于介绍的目的，使用一款新的工具metasploit</p>
+<h2 id="获取webshell-shell"><a href="#获取webshell-shell" class="headerlink" title="获取webshell(shell)"></a>获取webshell(shell)</h2><p><strong>使用命令msfconsole</strong></p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031142037618.png" alt="image-20211031142037618" loading="lazy"></p>
+<p>metasploit这款工具非常强大，同时拥有许多功能、内置了许多脚本，短短的一篇介绍不完，但是工具终究是工具，熟练使用工具很重要，但是渗透的思路和手工尝试更重要。此处只是出于介绍目的介绍工具，并不希望大家依赖工具，不然只能成为一个脚本小子。</p>
+<p>说回正题，尝试在metasploit里查找有没有相关的利用脚本。</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search drupal 7</span><br></pre></td></tr></table></figure>
+
+<p>此处搜索到以下几个模块，通过模块名字和Rank的综合分析，可以尝试考虑使用第0或第1个，由于我测试过第0个无法使用，故演示只演示第一个</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031142759755.png" alt="image-20211031142759755" loading="lazy"></p>
+<p>使用命令来使用该模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/unix/webapp/drupal_drupalgeddon2</span><br></pre></td></tr></table></figure>
+
+<p><img src="DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031143316570.png" alt="image-20211031143316570" loading="lazy"></p>
+<p>使用命令来进行参数设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031143329551.png" alt="image-20211031143329551" loading="lazy"></p>
+<p>对于Required为yes的项都需要设置才能使用，此处设置RHOSTS为目标靶机ip</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set RHOSTS 192.168.10.142</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031143501598.png" alt="image-20211031143501598" loading="lazy"></p>
+<p>使用命令exploit 启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>可以看到已经攻击成功，已经建立了一个meterpreter会话，可以理解为建立了一个反弹shell</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144009034.png" alt="image-20211031144009034" loading="lazy"></p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br></pre></td></tr></table></figure>
+
+<p>进入shell中，并尝试使用几个命令</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144512068.png" alt="image-20211031144512068" loading="lazy"></p>
+<p>但这个shell并不是一个交互式shell，对于后续的渗透测试很不方便，我们需要将这个shell变为交互式shell，关于交互式shell和非交互式shell的不同，还是希望大家能自己手动查查。</p>
+<p>由于使用python -v发现靶机上装了python2.7，则考虑可以使用python中的命令来唤出交互式shell</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031144904175.png" alt="image-20211031144904175" loading="lazy"></p>
+<p>先按下Ctrl+Z强制结束当前的shell,输入y确定</p>
+<p>回退到meterpreter会话</p>
+<p>再输入命令进入到非交互式shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br></pre></td></tr></table></figure>
+
+<p>再使用python使用交互式shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031145515760.png" alt="image-20211031145515760" loading="lazy"></p>
+<p>输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>查看该目录下的文件</p>
+<p><img src="C:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031145633167.png" alt="image-20211031145633167" loading="lazy"></p>
+<p>可以看到flag1.txt</p>
+<p>查看一下该文件</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat flag1.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031145757831.png" alt="image-20211031145757831" loading="lazy"></p>
+<p>文件中提示，每一个CMS都需要一个config file，则提示我们要去找这个config file，可能下一个flag会在那个地方</p>
+<p>首先考虑当前目录下的这个web.config</p>
+<p>cat一下看看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat web.config</span><br></pre></td></tr></table></figure>
+
+<p>发现并没有任何有价值的东西，则考虑去其他文件目录下找</p>
+<p>直接去网上搜drupal的文件结构 发现3.6 sites文件夹中有一个配置文件setting.php 则尝试去看看</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150311736.png" alt="image-20211031150311736" loading="lazy"></p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lscd siteslscd defaultls</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150356548.png" alt="image-20211031150356548" loading="lazy"></p>
+<p>看一下settings.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat settings.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150451186.png" alt="image-20211031150451186" loading="lazy"></p>
+<p>可以看到flag2以及mysql数据库的配置文件</p>
+<p>flag2提示道：不要尝试字典爆破</p>
+<p>此处他给了我们mysql的配置文件，那我们干脆就尝试登陆一下mysql</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -udbuser -pR0ck3t</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150632304.png" alt="image-20211031150632304" loading="lazy"></p>
+<p>登陆到mysql，看看数据库有没有什么敏感信息</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031150718312.png" alt="image-20211031150718312" loading="lazy"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:/Users/86151/Desktop/git%20notes/mynotes/DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031150821180.png" alt="image-20211031150821180" loading="lazy"></p>
+<p>拉到最下面可以看到 此处有一张表名为users,一般名为users的表都存着敏感信息，查看一下这张表。</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users;</span><br></pre></td></tr></table></figure>
+
+<p>考虑到显示不太好看 使用\G参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users \G;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031151015433.png" alt="image-20211031151015433" loading="lazy"></p>
+<p>可以看到该表中存放着admin的敏感信息，猜测可能是用于网站后台的登录，但密码却经过了加密。</p>
+<p>由于flag2中提示我们不要尝试着去暴力破解，既然我们没有办法得到它的密码，但由于我们拥有数据库的权限，可以考虑将我们已知的密码加密之后覆盖原来的密码，就可以将我们已知的密码拿来登录，接下来的思路便是，如何加密。</p>
+<p>直接去google一下drupal的用户密码是如何加密的</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031151359642.png" alt="image-20211031151359642" loading="lazy"></p>
+<p>查找到这篇文章 发现scripts下有一个加密脚本，可以直接使用</p>
+<p>先退出mysql</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php scripts/password-hash.sh 123 &gt;password.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat password.txt</span><br></pre></td></tr></table></figure>
+
+<p>拿到加密后的密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$S$DkN.RoKXZxoV58CBBB6ffl/FcI79v.iXXsAFeAPPwiS6OHvBkBR1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153331795.png" alt="image-20211031153331795" loading="lazy"></p>
+<p>接下来拿这行密码去替换mysql中的admin的密码</p>
+<p>进入mysql</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -udbuser -pR0ck3t</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">update users set pass=&#x27;$S$DkN.RoKXZxoV58CBBB6ffl/FcI79v.iXXsAFeAPPwiS6OHvBkBR1&#x27; where uid=1;</span><br></pre></td></tr></table></figure>
+
+<p>重新再查一下发现修改成功<img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153742026.png" alt="image-20211031153742026" loading="lazy"></p>
+<p>尝试用这个用户登录</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031153846492.png" alt="image-20211031153846492" loading="lazy"></p>
+<p>登陆成功，此时相当于拿到网页后台权限。按照一般的渗透流程，可以考虑先拿webshell，再拿真正主机的shell，此处由于靶机设计原因情况比较特殊，但无论如何渗透思路多种多样，只要拿到权限就是成功。</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031154036356.png" alt="image-20211031154036356" loading="lazy"></p>
+<p>随便点一点发现此处存在flag3</p>
+<p><img src="DC-1%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.assets/image-20211031154146140.png" alt="image-20211031154146140" loading="lazy"></p>
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><p>根据flag3中提到的关键词 perms find passwd -exec ，无论是正常的渗透测试流程，还是此处给出的提示，都在指引我们走向提权。</p>
+<p>此处flag提示的意义在于，它想让我们去读取/etc/passwd，但事实上这个文件需要root权限才能读取，而我们只是一般的普通用户权限，故此处考虑提权。</p>
+<p>提权的方式有很多，此处根据靶场设计来提权，由于提示了perm，则考虑使用具有suid的命令来提权</p>
+<p>什么是suid suid的命令为什么可以提权 需要大家自行百度</p>
+<p>对于拥有suid的命令来说，它最显而易见的特点是，使用该命令时，执行命令的权限为文件拥有者的权限，而不是使用命令者的权限。</p>
+<p>使用命令查找具有这样特点的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -4000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031154941141.png" alt="image-20211031154941141" loading="lazy"></p>
+<p>发现find拥有这样的特点 而find中的参数-exec 可以执行其后跟随的命令</p>
+<p>于是我们精心构造一个命令，通过拥有root权限的find来启用一个shell</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find password.txt -exec &#x27;/bin/sh&#x27; \;</span><br></pre></td></tr></table></figure>
+
+<p>password.txt最好为一个可以找到的文件，因为刚刚在密码那个环节生成了一个password.txt，所以此处就选择了password.txt，但此处没有特殊含义，任何一个在该目录存在下的文件都可以放这，重点在于-exec后跟着的命令</p>
+<p>执行/bin/sh 可以粗略地认为这时启动了一个shell 随后的反斜杠是因为考虑不同系统间可能存在符号不一致进行的转义。<img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031155441201.png" alt="image-20211031155441201" loading="lazy"></p>
+<p>得到root权限</p>
+<p>查看一下/etc/passwd  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>发现没什么东西</p>
+<p>看一下/etc/shadow</p>
+<p>为什么看/etc/shadow需要大家自行了解这两个文件的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shawdow</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031155805283.png" alt="image-20211031155805283" loading="lazy"></p>
+<p>发现flag4，并且其后有加密过的密码</p>
+<p>靶场设计思路是让我们去爆破这个密码，此处可以使用hydra工具，大家可以尝试去使用。</p>
+<p>但事实上我们此处已经拥有了root权限，要去找flag4这个用户的密码就很无聊，直接去找flag4就可以了</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name flag4*</span><br></pre></td></tr></table></figure>
+
+<p>该命令表示 搜索根目录(/)下的所有文件 -name参数表示符合其后内容的文件名</p>
+<p>*为linux中的通配符 此处可以理解为任意字符任意数量</p>
+<p>即flag4.lsjyyds flag4.lsjsb 都可以匹配到</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160552116.png" alt="image-20211031160552116" loading="lazy"></p>
+<p>可以直接找到flag4.txt</p>
+<p>cat一下</p>
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160625737.png" alt="image-20211031160625737" loading="lazy"></p>
+<p>他说我们可以用同样的方法来得到/root下的flag</p>
+<p>那既然我们已经是root权限了，</p>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">ls</span><br><span class="line">cat thefinalflag.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/th0me/images/main/blog/image-20211031160807052.png" alt="image-20211031160807052" loading="lazy"></p>
+<p>至此，你已拿到这台主机的root权限，对于单个靶机的渗透测试也就告一段落。但在事实的生产环境中，如果这台主机还连接了其他的内网服务，还可以使用一些特别的技巧使这台主机当做类似跳板，来完成对其他内网服务的访问以及再渗透测试。此次渗透测试的主要目的还是配置一下虚拟机，了解靶场的安装，熟悉一些简单的linux命令，比如cd ls pwd cat等等，以及几款工具如metasploit,hydra,nmap的基本使用，还有一些比较常规的渗透思路。如果你已成功的通过自己努力复现本次靶机的渗透测试并且拿到最后的flag，那么恭喜你已经逐渐开始入门，并且已经拥有独立解决问题的能力了。</p>
+<h1 id="end"><a href="#end" class="headerlink" title="end"></a><strong>end</strong></h1></div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="Donate" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>云游君</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/" title="DC-1靶机通关手册">http://example.com/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> unless otherwise stated.</li></ul></section></article></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论,就憋着吧</span><br></div><div id="waline"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js", () => {
+  const walineConfig = {"enable":true,"serverURL":"www.baidu.com","comment":true,"visitor":true,"placeholder":"填写邮箱，可以收到回复通知哦～","requiredFields":["nick"],"el":"#waline","lang":"en"}
+  walineConfig.path = "/2021/11/14/DC-1%E9%9D%B6%E6%9C%BA%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/"
+  walineConfig.dark = 'html[data-user-color-scheme="dark"]'
+  new Waline(walineConfig)
+}, window.Waline);</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2021 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> th0me</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v5.4.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.7.0</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#B9897F" stroke-width="2" stroke-linecap="round"></circle></svg></a></div></body></html>
